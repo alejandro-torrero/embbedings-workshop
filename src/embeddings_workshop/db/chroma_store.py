@@ -1,5 +1,5 @@
-import os
 import hashlib
+import os
 
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -21,6 +21,7 @@ vector_store = Chroma(
     collection_metadata={"hnsw:space": "cosine"},
 )
 
+
 def get_retriever(k: int = 5):
     return vector_store.as_retriever(search_kwargs={"k": k})
 
@@ -30,9 +31,8 @@ def _get_chunk_id(chunk: Document):
     return hashlib.sha256(raw_id.encode()).hexdigest()
 
 
-def save_chunks(chunks: list[Document]) -> int:    
-    
-    vector_store.add_documents(chunks, ids=[_get_chunk_id(c) for c in chunks])
-      
-    return len(chunks)
+def save_chunks(chunks: list[Document]) -> int:
 
+    vector_store.add_documents(chunks, ids=[_get_chunk_id(c) for c in chunks])
+
+    return len(chunks)

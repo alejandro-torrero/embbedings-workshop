@@ -1,15 +1,13 @@
 import argparse
 from pathlib import Path
 
-
-from langchain_core.documents import Document
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from embeddings_workshop.embedding.embedding import get_embeddings
-
-from embeddings_workshop.utils.logger import get_logger
 from embeddings_workshop.db.chroma_store import save_chunks
+from embeddings_workshop.embedding.embedding import get_embeddings
+from embeddings_workshop.utils.logger import get_logger
 
 
 def ingest_document(path: str, **kwargs):
@@ -46,7 +44,7 @@ def ingest_document(path: str, **kwargs):
     chunks = splitter.split_documents(doc)
 
     log.info(f"{len(chunks)} chunks computed out of document")
-    
+
     # if not dryRun:
     #     # Create embeddings
     #     content = [c.page_content for c in chunks]
@@ -60,9 +58,9 @@ def ingest_document(path: str, **kwargs):
 
     if not dryRun:
         # Save documents
-        
+
         save_chunks(chunks)
-        log.info('Succesfuly loaded chunks into chroma db')
+        log.info("Succesfuly loaded chunks into chroma db")
     else:
         log.info("Skipping insertion on db due to dry run")
 

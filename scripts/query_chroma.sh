@@ -1,1 +1,1 @@
-uv run query -q "What is a CDN?"
+uv run query -q "What is a CDN?" -k 3 -m query
