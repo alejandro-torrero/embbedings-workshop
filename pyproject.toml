@@ -23,6 +23,7 @@ dependencies = [
 [project.scripts]
 embeddings-workshop = "embeddings_workshop.main:main"
 ingest = "embeddings_workshop.ingestion.ingestion:ingestion"
+query = "embeddings_workshop.db.chroma_query:query_db"
 
 
 [build-system]

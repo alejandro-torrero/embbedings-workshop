@@ -1,0 +1,1 @@
+uv run query -q "What is a CDN?"
