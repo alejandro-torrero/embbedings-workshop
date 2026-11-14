@@ -1,0 +1,1 @@
+uv run python -m embeddings_workshop.main
